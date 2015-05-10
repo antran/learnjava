@@ -1,4 +1,6 @@
-package com.antt.hibernate.oneone;
+package com.antt.hibernate.model;
+
+import com.antt.hibernate.model.Stock;
 
 import java.util.Date;
 
