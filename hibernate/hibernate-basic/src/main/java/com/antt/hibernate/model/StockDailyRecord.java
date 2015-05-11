@@ -1,11 +1,12 @@
 package com.antt.hibernate.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by antt on 5/9/15.
  */
-public class StockDailyRecord {
+public class StockDailyRecord implements Serializable{
     private Integer recordId;
     private Stock stock;
     private Float priceOpen;

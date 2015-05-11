@@ -13,6 +13,15 @@ public class Stock implements Serializable {
     private String stockName;
     private StockDetail stockDetail;
     private Set<StockDailyRecord> stockDailyRecords = new HashSet<StockDailyRecord>();
+    private Set<Category> categories = new HashSet<Category>();
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
 
     public Set<StockDailyRecord> getStockDailyRecords() {
         return stockDailyRecords;
