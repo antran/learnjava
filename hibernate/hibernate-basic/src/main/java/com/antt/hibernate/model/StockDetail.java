@@ -1,11 +1,14 @@
-package com.antt.hibernate.oneone;
+package com.antt.hibernate.model;
 
+import com.antt.hibernate.model.Stock;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by antt on 4/26/15.
  */
-public class StockDetail {
+public class StockDetail implements Serializable {
     private Integer stockId;
     private Stock stock;
     private String compName;

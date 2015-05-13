@@ -1,7 +1,8 @@
-package com.antt.hibernate.oneone;
+package com.antt.hibernate.onemany;
 
 import com.antt.hibernate.BaseApp;
 import com.antt.hibernate.model.Stock;
+import com.antt.hibernate.model.StockDailyRecord;
 import com.antt.hibernate.model.StockDetail;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,42 +16,34 @@ import java.util.List;
 public class App extends BaseApp {
 
     public static void main(String[] args) {
-        createSessionFactory("hibernate.oneone.cfg.xml");
+        createSessionFactory("hibernate.onemany.cfg.xml");
         Transaction tx = null;
         try {
             Session session = getSession();
             tx = session.beginTransaction();
             Stock stock = new Stock();
-            stock.setStockName("GENM");
-            stock.setStockCode("4715");
+            stock.setStockName("PADINI");
+            stock.setStockCode("7052");
 
-            StockDetail stockDetail = new StockDetail();
-            stockDetail.setCompName("GENTING Malay");
-            stockDetail.setCompDesc("Best resort in the world");
-            stockDetail.setListDate(new Date());
+            StockDailyRecord record = new StockDailyRecord();
+            record.setPriceOpen((float) 11.1);
+            record.setPriceClose(12.1f);
+            record.setPriceChange(1.0f);
+            record.setDate(new Date());
+            record.setVolume(30000L);
 
-            stock.setStockDetail(stockDetail);
-            stockDetail.setStock(stock);
+            record.setStock(stock);
+            stock.getStockDailyRecords().add(record);
 
             session.save(stock);
-            System.out.println(stockDetail);
-            System.out.println("DONE saving\n");
-
-            List stocks = session.createQuery("from Stock").list();
-            for (Stock st : (List<Stock>) stocks) {
-                printObject(st);
-            }
-
-            System.out.println("\nAdd remark\n");
-            stockDetail.setRemark("Nothing special");
-            Stock st = (Stock) selectOne(session, "from Stock S where S.stockId = " + stock.getStockId());
-            printObject(st);
-            System.out.println("\nCommit transaction & close session");
+            //Don't need 'cause cascade is save-update
+//            session.save(record);
             tx.commit();
             session.close();
-            pressToExit();
+//            pressToExit();
         } catch (Exception ex) {
             System.out.println(ex);
+//            ExceptionUtil.getStackTrace(ex);
 //            ExceptionUtil.getStackTrace(ex);
             if(tx!=null) tx.rollback();
         } finally {
@@ -64,5 +57,7 @@ public class App extends BaseApp {
         System.out.println("\tDetail CompName  " + st.getStockDetail().getCompName());
         System.out.println("\tDetail Remark  " + st.getStockDetail().getRemark());
         System.out.println("\tStock detail obj " + st.getStockDetail());
+        System.out.println("\tRecord " + st.getStockDailyRecords().size());
+
     }
 }

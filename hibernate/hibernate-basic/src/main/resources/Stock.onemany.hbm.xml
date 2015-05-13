@@ -14,6 +14,15 @@
         <property name="stockName" type="string">
             <column name="STOCK_NAME" length="20" not-null="true" unique="true"/>
         </property>
-        <one-to-one name="stockDetail" class="com.antt.hibernate.model.StockDetail" cascade="save-update"/>
+
+        <set name="stockDailyRecords" table="STOCK_DAILY_RECORD" inverse="true" lazy="true"
+             fetch="select" cascade="save-update">
+            <key>
+                <column name="STOCK_ID" not-null="true"/>
+            </key>
+            <one-to-many class="com.antt.hibernate.model.StockDailyRecord"/>
+        </set>
+
+        <!--<one-to-one name="stockDetail" class="com.antt.hibernate.model.StockDetail" cascade="save-update"/>-->
     </class>
 </hibernate-mapping>

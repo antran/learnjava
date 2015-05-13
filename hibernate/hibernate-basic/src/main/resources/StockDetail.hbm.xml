@@ -3,7 +3,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.antt.hibernate.oneone.StockDetail" table="STOCK_DETAIL">
+    <class name="com.antt.hibernate.model.StockDetail" table="STOCK_DETAIL">
         <id name="stockId" type="java.lang.Integer">
             <column name="STOCK_ID"/>
             <generator class="foreign">
@@ -22,6 +22,6 @@
         <property name="listDate" type="date">
             <column name="LIST_DATE" length="10" not-null="true"/>
         </property>
-        <one-to-one name="stock" class="com.antt.hibernate.oneone.Stock" constrained="true"/>
+        <one-to-one name="stock" class="com.antt.hibernate.model.Stock" constrained="true"/>
     </class>
 </hibernate-mapping>

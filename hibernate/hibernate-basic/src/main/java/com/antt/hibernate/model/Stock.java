@@ -1,6 +1,8 @@
-package com.antt.hibernate.oneone;
+package com.antt.hibernate.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by antt on 4/26/15.
@@ -10,6 +12,24 @@ public class Stock implements Serializable {
     private String stockCode;
     private String stockName;
     private StockDetail stockDetail;
+    private Set<StockDailyRecord> stockDailyRecords = new HashSet<StockDailyRecord>();
+    private Set<Category> categories = new HashSet<Category>();
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Set<StockDailyRecord> getStockDailyRecords() {
+        return stockDailyRecords;
+    }
+
+    public void setStockDailyRecords(Set<StockDailyRecord> stockDailyRecords) {
+        this.stockDailyRecords = stockDailyRecords;
+    }
 
     public Integer getStockId() {
         return stockId;
