@@ -13,6 +13,7 @@
         <!--<module>helloworld-jc</module>-->
         <module>mkyong-helloworld-xml-2</module>
         <module>web-flow-simple</module>
+        <module>form-handling</module>
     </modules>
 
     <properties>
