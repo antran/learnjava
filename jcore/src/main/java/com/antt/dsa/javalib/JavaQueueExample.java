@@ -1,4 +1,4 @@
-package com.antt.dsa;
+package com.antt.dsa.javalib;
 
 import java.util.LinkedList;
 import java.util.Queue;
